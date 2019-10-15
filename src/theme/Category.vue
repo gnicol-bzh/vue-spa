@@ -6,7 +6,10 @@
                 :key="post.id"
                 class="column is-one-third"
             >
-                <app-post :post="post" />
+                <app-post :link="post.link">
+                    <h3 slot="title">{{ post.title }}</h3>
+                    <p slot="content">{{ post.content }}</p>
+                </app-post>
             </div>
         </div>
     </div>

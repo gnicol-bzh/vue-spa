@@ -1,12 +1,12 @@
 <template>
     <article class="card">
         <div class="card-content">
-            <h3>{{ post.title }}</h3>
-            {{ post.content }}
+            <slot name="title" />
+            <slot name="content" />
         </div>
         <footer class="card-footer">
             <a
-                :href="post.link"
+                :href="link"
                 class="card-footer-item"
             >Read more</a>
         </footer>
@@ -14,6 +14,11 @@
 </template>
 <script>
 export default {
-    props: ['post'],
+    props: {
+        link: {
+            type: String,
+            default: '#',
+        },
+    },
 }
 </script>
