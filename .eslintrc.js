@@ -69,7 +69,8 @@ module.exports = {
         radix: ["error", "as-needed"],
         semi: ["error", "never"],
         "space-before-function-paren": ["error", "never"],
-        "wrap-iife": ["error", "inside"]
+        "wrap-iife": ["error", "inside"],
+        "vue/html-indent": ["warn", 4]
     },
     overrides: [
         {
