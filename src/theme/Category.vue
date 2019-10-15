@@ -6,24 +6,17 @@
                 :key="post.id"
                 class="column is-one-third"
             >
-                <article class="card">
-                    <div class="card-content">
-                        <h3>{{ post.title }}</h3>
-                        {{ post.content }}
-                    </div>
-                    <footer class="card-footer">
-                        <a
-                            :href="post.link"
-                            class="card-footer-item"
-                        >Read more</a>
-                    </footer>
-                </article>
+                <app-post :post="post" />
             </div>
         </div>
     </div>
 </template>
 <script>
+import Post from './Post.vue'
 export default {
+    components: {
+        'app-post': Post,
+    },
     data() {
         return {
             posts: [
