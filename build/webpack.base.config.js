@@ -5,6 +5,7 @@ const config = {
     entry: {
         app: path.resolve(__dirname, '../src/client-entry.js'),
     },
+    mode: 'development',
     module: {
         rules: [
             {
