@@ -1,11 +1,14 @@
 const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const webpack = require('webpack')
 
-const config = {
+const isDev = process.env.NODE_ENV === 'development'
+
+module.exports = {
     entry: {
         app: path.resolve(__dirname, '../src/client-entry.js'),
     },
-    mode: 'development',
     module: {
         rules: [
             {
@@ -17,14 +20,17 @@ const config = {
             {
                 test: /\.vue$/,
                 loader: 'vue-loader',
+                options: {
+                    extractCSS: true,
+                },
             },
             {
-                test: /\.scss$/,
-                use: ['vue-style-loader', 'css-loader', 'sass-loader'],
-            },
-            {
-                test: /\.css$/,
-                use: ['vue-style-loader', 'css-loader'],
+                test: /\.(sc|c)ss$/,
+                use: [
+                    isDev ? 'vue-style-loader' : MiniCssExtractPlugin.loader,
+                    { loader: 'css-loader', options: { sourceMap: isDev } },
+                    { loader: 'sass-loader', options: { sourceMap: isDev } },
+                ],
             },
             {
                 test: /\.js$/,
@@ -48,7 +54,15 @@ const config = {
         publicPath: '/',
         filename: 'assets/js/[name].js',
     },
-    plugins: [new VueLoaderPlugin()],
+    plugins: [
+        new VueLoaderPlugin(),
+        new MiniCssExtractPlugin({
+            filename: 'assets/style.css',
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+              NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+            },
+          }),
+    ],
 }
-
-module.exports = config

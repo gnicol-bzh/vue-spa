@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "",
     "scripts": {
-        "start": "node server",
+        "start": "cross-env NODE_ENV=development node server",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Grégory NICOL",
@@ -18,6 +18,7 @@
         "@babel/preset-env": "^7.6.3",
         "babel-eslint": "^10.0.3",
         "babel-loader": "^8.0.6",
+        "cross-env": "^6.0.3",
         "css-loader": "^3.2.0",
         "eslint": "^5.16.0",
         "eslint-config-standard": "^14.1.0",
@@ -28,6 +29,7 @@
         "eslint-plugin-promise": "^4.2.1",
         "eslint-plugin-standard": "^4.0.1",
         "eslint-plugin-vue": "^5.2.3",
+        "mini-css-extract-plugin": "^0.8.0",
         "node-sass": "^4.12.0",
         "sass-loader": "^8.0.0",
         "vue-eslint-parser": "^6.0.4",
@@ -37,6 +39,7 @@
         "webpack": "^4.41.0",
         "webpack-cli": "^3.3.9",
         "webpack-dev-middleware": "^3.7.2",
-        "webpack-hot-middleware": "^2.25.0"
+        "webpack-hot-middleware": "^2.25.0",
+        "webpack-merge": "^4.2.2"
     }
 }
