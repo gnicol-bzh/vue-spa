@@ -1,7 +1,7 @@
 const base = require('./webpack.base.config')
+const merge = require('webpack-merge')
 
-const config = Object.assign({}, base, {
-    plugins: base.plugins || []
+module.exports = merge(base, {
+    devtool: 'cheap-module-eval-source-map',
+    mode: 'development',
 })
-
-module.exports = config
