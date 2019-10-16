@@ -7,6 +7,7 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
     mode: 'history',
+    linkActiveClass: 'is-active',
     routes: [
         {
             path: '/',
@@ -17,6 +18,9 @@ const router = new VueRouter({
             component: Login,
         },
     ],
+    scrollBehavior(to, from, savedPosition) {
+        return { y: 0 }
+    },
 })
 
 export default router
