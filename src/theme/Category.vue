@@ -1,20 +1,18 @@
 <template>
-    <div class="container content">
-        <div class="columns">
-            <div
-                v-for="post in posts"
-                :key="post.id"
-                class="column is-one-third"
-            >
-                <app-post :link="post.link">
-                    <h3 slot="title">
-                        {{ post.title }}
-                    </h3>
-                    <p slot="content">
-                        {{ post.content }}
-                    </p>
-                </app-post>
-            </div>
+    <div class="columns">
+        <div
+            v-for="post in posts"
+            :key="post.id"
+            class="column is-one-third"
+        >
+            <app-post :link="post.link">
+                <h3 slot="title">
+                    {{ post.title }}
+                </h3>
+                <p slot="content">
+                    {{ post.content }}
+                </p>
+            </app-post>
         </div>
     </div>
 </template>
