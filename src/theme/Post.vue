@@ -22,3 +22,15 @@ export default {
     },
 }
 </script>
+<style scoped>
+.card {
+    height: 100%;
+    padding-bottom: 40px;
+}
+footer {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+</style>
