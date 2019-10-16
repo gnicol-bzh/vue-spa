@@ -36,10 +36,17 @@
             <div class="navbar-start">
                 <router-link
                     class="navbar-item"
-                    to="/"
+                    to="/category/front-end"
                     exact
                 >
-                    Home
+                    Front-end
+                </router-link>
+                <router-link
+                    class="navbar-item"
+                    to="/category/mobile"
+                    exact
+                >
+                    Mobile
                 </router-link>
             </div>
             <div class="navbar-end">

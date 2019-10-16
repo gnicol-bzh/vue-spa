@@ -24,7 +24,9 @@ export default {
     },
     data() {
         return {
-            posts: [
+            id: this.$route.params.id,
+            posts: [],
+            postsFrontEnd: [
                 {
                     id: 1,
                     title: 'PWA Stats',
@@ -48,6 +50,8 @@ export default {
                     link:
                         'https://medium.freecodecamp.com/so-whats-this-graphql-thing-i-keep-hearing-about-baf4d36c20cf',
                 },
+            ],
+            postsMobile: [
                 {
                     id: 4,
                     title: 'State of The Mobile Gap Between Native and Web',
@@ -72,6 +76,26 @@ export default {
                 },
             ],
         }
+    },
+    watch: {
+        '$route'(to, from) {
+            this.id = to.params.id
+            this.loadPosts()
+        },
+    },
+    created() {
+        this.loadPosts()
+    },
+    methods: {
+        loadPosts() {
+            if (this.id === 'front-end') {
+                this.posts = this.postsFrontEnd
+            } else if (this.id === 'mobile') {
+                this.posts = this.postsMobile
+            } else {
+                this.posts = []
+            }
+        },
     },
 }
 </script>
