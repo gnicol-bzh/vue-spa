@@ -11,6 +11,10 @@ const router = new VueRouter({
     routes: [
         {
             path: '/',
+            redirect: '/category/front-end',
+        },
+        {
+            path: '/category/front-end',
             component: Category,
         },
         {
