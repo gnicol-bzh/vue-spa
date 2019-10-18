@@ -1,10 +1,10 @@
 import Vue from 'vue'
+import AppLayout from './theme/Layout.vue'
+import router from './router'
 
 const app = new Vue({
-    data: {
-        hello: 'hi there'
-    },
-    template: '<div id="app">{{ hello }}</div>'
+    router,
+    ...AppLayout,
 })
 
-export { app }
+export { app, router }
