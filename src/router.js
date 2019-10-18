@@ -1,5 +1,6 @@
 import Category from './theme/Category.vue'
 import Login from './theme/Login.vue'
+import NotFound from './theme/NotFound.vue'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
@@ -19,8 +20,12 @@ const router = new VueRouter({
             path: '/category/:id',
         },
         {
-            path: '/login',
             component: Login,
+            path: '/login',
+        },
+        {
+            component: NotFound,
+            path: '*',
         },
     ],
     scrollBehavior(to, from, savedPosition) {
