@@ -4,6 +4,10 @@ import NotFound from './theme/NotFound.vue'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+// const Category = () => import('./theme/Category.vue')
+// const Login = () => import('./theme/Login.vue')
+// const NotFound = () => import('./theme/NotFound.vue')
+
 Vue.use(VueRouter)
 
 const router = new VueRouter({
