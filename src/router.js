@@ -14,8 +14,9 @@ const router = new VueRouter({
             redirect: '/category/front-end',
         },
         {
-            path: '/category/:id',
             component: Category,
+            name: 'category',
+            path: '/category/:id',
         },
         {
             path: '/login',

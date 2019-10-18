@@ -37,14 +37,12 @@
                 <router-link
                     class="navbar-item"
                     to="/category/front-end"
-                    exact
                 >
                     Front-end
                 </router-link>
                 <router-link
                     class="navbar-item"
-                    to="/category/mobile"
-                    exact
+                    :to="{ name:'category', params: { id: 'mobile' } }"
                 >
                     Mobile
                 </router-link>
