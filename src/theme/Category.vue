@@ -1,20 +1,18 @@
 <template>
-    <div class="container content">
-        <div class="columns">
-            <div
-                v-for="post in posts"
-                :key="post.id"
-                class="column is-one-third"
-            >
-                <app-post :link="post.link">
-                    <h3 slot="title">
-                        {{ post.title }}
-                    </h3>
-                    <p slot="content">
-                        {{ post.content }}
-                    </p>
-                </app-post>
-            </div>
+    <div class="columns">
+        <div
+            v-for="post in posts"
+            :key="post.id"
+            class="column is-one-third"
+        >
+            <app-post :link="post.link">
+                <h3 slot="title">
+                    {{ post.title }}
+                </h3>
+                <p slot="content">
+                    {{ post.content }}
+                </p>
+            </app-post>
         </div>
     </div>
 </template>
@@ -26,7 +24,9 @@ export default {
     },
     data() {
         return {
-            posts: [
+            id: this.$route.params.id,
+            posts: [],
+            postsFrontEnd: [
                 {
                     id: 1,
                     title: 'PWA Stats',
@@ -50,6 +50,8 @@ export default {
                     link:
                         'https://medium.freecodecamp.com/so-whats-this-graphql-thing-i-keep-hearing-about-baf4d36c20cf',
                 },
+            ],
+            postsMobile: [
                 {
                     id: 4,
                     title: 'State of The Mobile Gap Between Native and Web',
@@ -74,6 +76,26 @@ export default {
                 },
             ],
         }
+    },
+    watch: {
+        '$route'(to, from) {
+            this.id = to.params.id
+            this.loadPosts()
+        },
+    },
+    created() {
+        this.loadPosts()
+    },
+    methods: {
+        loadPosts() {
+            if (this.id === 'front-end') {
+                this.posts = this.postsFrontEnd
+            } else if (this.id === 'mobile') {
+                this.posts = this.postsMobile
+            } else {
+                this.posts = []
+            }
+        },
     },
 }
 </script>

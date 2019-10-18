@@ -2,7 +2,9 @@
     <div>
         <app-header />
         <section class="main-section section">
-            <category />
+            <div class="container content">
+                <router-view />
+            </div>
         </section>
         <app-footer />
     </div>
@@ -11,13 +13,11 @@
 <script>
 import AppHeader from './AppHeader.vue'
 import AppFooter from './AppFooter.vue'
-import Category from './Category.vue'
 
 export default {
     components: {
         'app-header': AppHeader,
         'app-footer': AppFooter,
-        category: Category,
     },
 }
 </script>
