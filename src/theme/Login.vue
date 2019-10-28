@@ -9,6 +9,7 @@
                 <div class="field">
                     <div class="control">
                         <input
+                            v-model="username"
                             class="input"
                             type="text"
                             placeholder="Your username"
@@ -25,6 +26,7 @@
                 <div class="field">
                     <div class="control">
                         <input
+                            v-model="password"
                             class="input"
                             type="password"
                             placeholder="Your password"
@@ -40,7 +42,10 @@
             <div class="field-body">
                 <div class="field">
                     <div class="control">
-                        <button class="button is-primary">
+                        <button
+                            class="button is-primary"
+                            @click="login()"
+                        >
                             Login
                         </button>
                     </div>
@@ -49,3 +54,26 @@
         </div>
     </div>
 </template>
+<script>
+import appService from '../app.service'
+export default {
+    data() {
+        return {
+            password: '',
+            username: '',
+        }
+    },
+    methods: {
+        login() {
+            appService.login({
+                password: this.password,
+                username: this.username,
+            })
+            .then((data) => {
+                window.localStorage.setItem('token', data.token)
+                window.localStorage.setItem('tokenExpiration', data.expiration)
+            }).catch(() => window.alert('Could not login!'))
+        },
+    },
+}
+</script>
