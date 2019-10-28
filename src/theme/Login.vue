@@ -2,6 +2,8 @@
     <div class="content">
         <div v-if="isAuthenticated">
             <p>Hello authenticated user</p>
+            <p>Name: {{ profile.firstName }}</p>
+            <p>Favorite sandwich: {{ profile.favoriteSandwich }}</p>
             <p>
                 <button
                     class="button is-primary"
@@ -11,7 +13,7 @@
                 </button>
             </p>
         </div>
-        <form v-else>
+        <div v-else>
             <h2>Login</h2>
             <div class="field is-horizontal">
                 <div class="field-label is-normal">
@@ -64,7 +66,7 @@
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 </template>
 <script>
@@ -75,7 +77,20 @@ export default {
             password: '',
             username: '',
             isAuthenticated: false,
+            profile: {},
         }
+    },
+    watch: {
+        isAuthenticated: function(val) {
+            if (val) {
+                appService.getProfile()
+                .then(profile => {
+                    this.profile = profile
+                })
+            } else {
+                this.profile = {}
+            }
+        },
     },
     created() {
         const expiration = window.localStorage.getItem('tokenExpiration')
