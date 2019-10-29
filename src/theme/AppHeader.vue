@@ -52,18 +52,23 @@
                     class="navbar-item"
                     to="/login"
                 >
-                    Login
+                    <span v-if="isAuthenticated">Logout</span>
+                    <span v-else>Login</span>
                 </router-link>
             </div>
         </div>
     </nav>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
     data() {
         return {
             isActive: false,
         }
+    },
+    computed: {
+        ...mapGetters(['isAuthenticated']),
     },
     methods: {
         toggleBurger() {
