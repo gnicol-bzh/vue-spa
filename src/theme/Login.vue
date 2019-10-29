@@ -71,18 +71,21 @@
 </template>
 <script>
 import appService from '../app.service'
-import eventBus from '../event-bus'
+import { mapGetters } from 'vuex'
 export default {
     data() {
         return {
             password: '',
             username: '',
-            isAuthenticated: false,
+            // isAuthenticated: false,
             profile: {},
         }
     },
+    computed: {
+        ...mapGetters(['isAuthenticated']),
+    },
     watch: {
-        isAuthenticated: function(val) {
+        /* isAuthenticated: function(val) {
             if (val) {
                 appService.getProfile()
                 .then(profile => {
@@ -91,14 +94,13 @@ export default {
             } else {
                 this.profile = {}
             }
-            eventBus.$emit('authStatusUpdate', val)
-        },
+        }, */
     },
     created() {
         const expiration = window.localStorage.getItem('tokenExpiration')
         var unixTimestamp = new Date().getTime() / 1000
         if (expiration !== null && parseInt(expiration) - unixTimestamp > 0) {
-            this.isAuthenticated = true
+            // this.isAuthenticated = true
         }
     },
     methods: {
@@ -114,7 +116,7 @@ export default {
                         'tokenExpiration',
                         data.expiration
                     )
-                    this.isAuthenticated = true
+                    // this.isAuthenticated = true
                     this.password = ''
                     this.username = ''
                 })
@@ -126,7 +128,7 @@ export default {
                 'tokenExpiration',
                 null
             )
-            this.isAuthenticated = false
+            // this.isAuthenticated = false
         },
     },
 }
