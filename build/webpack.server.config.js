@@ -1,9 +1,8 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const base = require('./webpack.base.config')
 const merge = require('webpack-merge')
 const nodeExternals = require('webpack-node-externals')
 const path = require('path')
-const webpack = require('webpack')
 
 const config = merge(base, {
     entry: path.resolve(__dirname, '../src/server-entry.js'),
@@ -18,7 +17,9 @@ const config = merge(base, {
         whitelist: /\.css$/,
     }),
     plugins: [
-        new ExtractTextPlugin('server/styles.css'),
+        new MiniCssExtractPlugin({
+            filename: 'server/styles.css',
+        }),
     ],
 })
 
