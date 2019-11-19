@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const fs = require('fs')
 const path = require('path')
+const serialize = require('serialize-javascript')
 const { createBundleRenderer } = require('vue-server-renderer')
 let renderer
 
@@ -23,6 +24,7 @@ app.get('*', (req, res) => {
             return res.status(500).send('Server error')
         }
         html = indexHTML.replace('{{ APP }}', html)
+        html = html.replace('{{ STATE }}', `<script>window.__INITIAL_STATE__=${serialize(context.initialState, { isJSON: true })}</script>`)
         res.write(html)
         res.end()
     })
