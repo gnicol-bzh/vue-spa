@@ -8,6 +8,7 @@ const isDev = process.env.NODE_ENV === 'development'
 module.exports = {
     entry: {
         app: path.resolve(__dirname, '../src/client-entry.js'),
+        //vendor: ['vue', 'vue-router', 'vuex', 'axios'],
     },
     module: {
         rules: [
